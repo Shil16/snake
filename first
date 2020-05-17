@@ -1,0 +1,43 @@
+import pygame
+pygame.init()
+#makes a screen and the header becomes snake
+screen= pygame.display.set_mode((800,600))
+pygame.display.set_caption('snake')
+# x and y values for the position of the box
+x= 400
+y=300
+#width and height of the box
+width=50
+height=50
+#increament of movement
+vel=50
+#ensures the game will run until you press the quit button
+run=True
+while run:
+  pygame.time.delay(100)
+  for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+      run = False
+#gets the button presses
+  keys = pygame.key.get_pressed()
+
+#movement of the box and ensures the box won't go outside of the boundaries and it goes in a snake fashion
+  if keys[pygame.K_LEFT] and x>0 and not keys[pygame.K_UP] and not keys[pygame.K_DOWN]:
+    x-=vel
+
+  if keys[pygame.K_RIGHT] and x<750 and not keys[pygame.K_UP] and not keys[pygame.K_DOWN]:
+    x+=vel
+  
+  if keys[pygame.K_UP] and y>0 and not keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]:
+    y-=vel      
+  
+  if keys[pygame.K_DOWN] and y<550 and not keys[pygame.K_LEFT] and not keys:
+      y+=vel
+#fills the screen
+  screen.fill((0,0,0))
+#box init
+  pygame.draw.rect(screen,(255,255,255),(x,y,width,height))
+#updates the screen
+  pygame.display.update()
+#quits pygame     
+pygame.quit()
